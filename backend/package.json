@@ -1,0 +1,33 @@
+{
+  "name": "electronic-shop-backend",
+  "version": "1.0.0",
+  "description": "FeathersJS & Prisma Backend for Electronic Shop",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev --name init",
+    "db:push": "npx prisma db push",
+    "db:seed": "node src/seed.js"
+  },
+  "dependencies": {
+    "@feathersjs/authentication": "^5.0.31",
+    "@feathersjs/authentication-local": "^5.0.31",
+    "@feathersjs/express": "^5.0.31",
+    "@feathersjs/feathers": "^5.0.31",
+    "@prisma/client": "^6.3.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ioredis": "^5.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "pdfkit": "^0.16.0",
+    "pdfkit-table": "^0.1.99",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "prisma": "^6.3.1"
+  }
+}
