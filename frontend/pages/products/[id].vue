@@ -1,22 +1,22 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <!-- Breadcrumb -->
-    <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-8">
-      <NuxtLink to="/" class="hover:text-white">Inicio</NuxtLink>
+    <div class="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-8">
+      <NuxtLink to="/" class="hover:text-slate-900 dark:hover:text-white">Inicio</NuxtLink>
       <span>/</span>
-      <NuxtLink to="/products" class="hover:text-white">Catálogo</NuxtLink>
+      <NuxtLink to="/products" class="hover:text-slate-900 dark:hover:text-white">Catálogo</NuxtLink>
       <span>/</span>
-      <span class="text-brand-400 truncate">{{ product?.name || 'Cargando...' }}</span>
+      <span class="text-brand-600 dark:text-brand-400 font-semibold truncate">{{ product?.name || 'Cargando...' }}</span>
     </div>
 
     <!-- Loading State -->
     <div v-if="loading" class="glass-panel p-12 rounded-3xl animate-pulse h-96"></div>
 
     <!-- Product Not Found -->
-    <div v-else-if="!product" class="glass-panel p-12 rounded-3xl text-center">
+    <div v-else-if="!product" class="glass-panel p-12 rounded-3xl text-center border border-slate-200 dark:border-slate-800">
       <div class="text-4xl mb-4">⚠️</div>
-      <h2 class="text-2xl font-bold text-white mb-2">Producto No Encontrado</h2>
-      <p class="text-slate-400 text-sm mb-6">El producto solicitado no existe o ha sido descontinuado.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Producto No Encontrado</h2>
+      <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">El producto solicitado no existe o ha sido descontinuado.</p>
       <NuxtLink to="/products" class="px-6 py-3 rounded-xl bg-brand-500 text-dark-900 font-bold text-sm">
         Volver al Catálogo
       </NuxtLink>
@@ -25,7 +25,7 @@
     <!-- Product View -->
     <div v-else class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <!-- Product Image Showcase -->
-      <div class="glass-panel rounded-3xl p-8 flex items-center justify-center bg-slate-950/80 border border-slate-800 relative">
+      <div class="glass-panel rounded-3xl p-8 flex items-center justify-center bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 relative transition-colors duration-300">
         <img
           :src="product.image"
           :alt="product.name"
@@ -36,19 +36,19 @@
         <div class="absolute top-4 left-4">
           <span
             v-if="product.stock > 10"
-            class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
+            class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-100 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-500/40 shadow-sm"
           >
             ✓ Stock Disponible ({{ product.stock }} unidades)
           </span>
           <span
             v-else-if="product.stock > 0"
-            class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse"
+            class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/40 animate-pulse shadow-sm"
           >
             ⚠️ Stock Crítico ({{ product.stock }} restantes)
           </span>
           <span
             v-else
-            class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-red-500/20 text-red-300 border border-red-500/40"
+            class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-red-100 dark:bg-red-500/20 text-red-800 dark:text-red-300 border border-red-300 dark:border-red-500/40 shadow-sm"
           >
             ❌ Sin Stock
           </span>
@@ -58,56 +58,56 @@
       <!-- Product Information -->
       <div class="flex flex-col justify-between">
         <div>
-          <span class="text-xs font-mono uppercase text-brand-400 tracking-wider block mb-2">
+          <span class="text-xs font-mono uppercase text-brand-600 dark:text-brand-400 font-semibold tracking-wider block mb-2">
             SKU: {{ product.sku }} | Categoría: {{ product.category?.name }}
           </span>
 
-          <h1 class="text-3xl font-extrabold font-display text-white mb-4 leading-tight">
+          <h1 class="text-3xl font-extrabold font-display text-slate-900 dark:text-white mb-4 leading-tight">
             {{ product.name }}
           </h1>
 
-          <div class="text-3xl font-bold font-display text-white mb-6 flex items-baseline gap-2">
+          <div class="text-3xl font-bold font-display text-slate-900 dark:text-white mb-6 flex items-baseline gap-2">
             <span>${{ product.price.toFixed(2) }}</span>
-            <span class="text-xs font-mono text-slate-400">USD (Impuestos no incl.)</span>
+            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">USD (Impuestos no incl.)</span>
           </div>
 
-          <p class="text-slate-300 text-sm leading-relaxed mb-8 border-t border-b border-slate-800 py-4">
+          <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-8 border-t border-b border-slate-200 dark:border-slate-800 py-4">
             {{ product.description }}
           </p>
 
           <!-- Specifications Table -->
           <div v-if="product.specifications" class="mb-8">
-            <h3 class="text-sm font-mono uppercase text-slate-400 mb-3 flex items-center gap-2">
+            <h3 class="text-sm font-mono uppercase text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
               <span>⚙️ Especificaciones Técnicas</span>
             </h3>
-            <div class="bg-slate-900/80 rounded-2xl p-4 border border-slate-800 space-y-2">
+            <div class="bg-slate-100 dark:bg-slate-900/80 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 space-y-2">
               <div
                 v-for="(val, key) in Object.entries(product.specifications)"
                 :key="key"
-                class="flex justify-between items-center text-xs py-1.5 border-b border-slate-800/60 last:border-0"
+                class="flex justify-between items-center text-xs py-1.5 border-b border-slate-200 dark:border-slate-800/60 last:border-0"
               >
-                <span class="text-slate-400 font-mono">{{ val[0] }}</span>
-                <span class="text-slate-100 font-semibold font-mono">{{ val[1] }}</span>
+                <span class="text-slate-600 dark:text-slate-400 font-mono">{{ val[0] }}</span>
+                <span class="text-slate-900 dark:text-slate-100 font-semibold font-mono">{{ val[1] }}</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Add to Cart Controls -->
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
+        <div class="glass-panel p-6 rounded-2xl space-y-4 border border-slate-200 dark:border-slate-800">
           <div class="flex items-center gap-4">
-            <label class="text-xs font-mono text-slate-400 uppercase">Cantidad:</label>
-            <div class="flex items-center bg-slate-900 border border-slate-700 rounded-xl overflow-hidden">
+            <label class="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase">Cantidad:</label>
+            <div class="flex items-center bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl overflow-hidden">
               <button
                 @click="quantity = Math.max(1, quantity - 1)"
-                class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-slate-800"
+                class="px-3 py-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800"
               >
                 -
               </button>
-              <span class="px-4 py-1.5 text-sm font-bold font-mono text-white">{{ quantity }}</span>
+              <span class="px-4 py-1.5 text-sm font-bold font-mono text-slate-900 dark:text-white">{{ quantity }}</span>
               <button
                 @click="quantity = Math.min(product.stock, quantity + 1)"
-                class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-slate-800"
+                class="px-3 py-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800"
               >
                 +
               </button>
@@ -122,7 +122,7 @@
               ? 'bg-emerald-500 text-dark-900'
               : product.stock > 0
                 ? 'bg-brand-500 hover:bg-brand-400 text-dark-900 glow-btn'
-                : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'"
+                : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed border border-slate-300 dark:border-slate-700'"
           >
             <span>{{ added ? '¡Añadido al Carrito!' : (product.stock > 0 ? `Agregar ${quantity} al Carrito ($${(product.price * quantity).toFixed(2)})` : 'Agotado Temporalmente') }}</span>
           </button>

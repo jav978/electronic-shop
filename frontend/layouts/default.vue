@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-dark-900 text-slate-100">
+  <div class="min-h-screen flex flex-col bg-slate-50 dark:bg-dark-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
     <Navbar />
     <main class="flex-grow">
       <slot />

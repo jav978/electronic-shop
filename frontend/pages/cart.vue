@@ -1,17 +1,17 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <h1 class="text-3xl font-bold font-display text-white mb-8 flex items-center gap-3">
+    <h1 class="text-3xl font-bold font-display text-slate-900 dark:text-white mb-8 flex items-center gap-3">
       <span>🛒 Carrito de Compras</span>
-      <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-800 text-brand-400 border border-slate-700">
+      <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-brand-600 dark:text-brand-400 border border-slate-300 dark:border-slate-700 font-semibold">
         {{ cartStore.totalItems }} artículos
       </span>
     </h1>
 
     <!-- Empty Cart State -->
-    <div v-if="cartStore.items.length === 0" class="glass-panel rounded-3xl p-16 text-center max-w-xl mx-auto">
+    <div v-if="cartStore.items.length === 0" class="glass-panel rounded-3xl p-16 text-center max-w-xl mx-auto border border-slate-200 dark:border-slate-800">
       <div class="text-5xl mb-4">🔌</div>
-      <h2 class="text-2xl font-bold text-white mb-2">Tu carrito está vacío</h2>
-      <p class="text-slate-400 text-sm mb-8">Añade microcontroladores, placas base o sensores para comenzar tu pedido.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Tu carrito está vacío</h2>
+      <p class="text-slate-600 dark:text-slate-400 text-sm mb-8">Añade microcontroladores, placas base o sensores para comenzar tu pedido.</p>
       <NuxtLink to="/products" class="px-8 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-dark-900 font-bold text-sm glow-btn">
         Ver Catálogo de Productos
       </NuxtLink>
@@ -24,31 +24,31 @@
         <div
           v-for="item in cartStore.items"
           :key="item.product.id"
-          class="glass-panel p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 border border-slate-800"
+          class="glass-panel p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 border border-slate-200 dark:border-slate-800"
         >
           <div class="flex items-center gap-4 w-full sm:w-auto">
-            <img :src="item.product.image" :alt="item.product.name" class="w-16 h-16 object-contain rounded-xl bg-slate-950 p-2 border border-slate-800" />
+            <img :src="item.product.image" :alt="item.product.name" class="w-16 h-16 object-contain rounded-xl bg-slate-100 dark:bg-slate-950 p-2 border border-slate-200 dark:border-slate-800" />
             <div>
-              <NuxtLink :to="`/products/${item.product.slug || item.product.id}`" class="font-bold text-white text-sm hover:text-brand-300 transition-colors">
+              <NuxtLink :to="`/products/${item.product.slug || item.product.id}`" class="font-bold text-slate-900 dark:text-white text-sm hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
                 {{ item.product.name }}
               </NuxtLink>
-              <span class="block text-xs font-mono text-slate-400 mt-1">SKU: {{ item.product.sku }} | ${{ item.product.price.toFixed(2) }} c/u</span>
+              <span class="block text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">SKU: {{ item.product.sku }} | ${{ item.product.price.toFixed(2) }} c/u</span>
             </div>
           </div>
 
-          <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-0 border-slate-800">
+          <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-0 border-slate-200 dark:border-slate-800">
             <!-- Quantity Control -->
-            <div class="flex items-center bg-slate-900 border border-slate-700 rounded-xl overflow-hidden">
+            <div class="flex items-center bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl overflow-hidden">
               <button
                 @click="cartStore.updateQuantity(item.product.id, item.quantity - 1)"
-                class="px-2.5 py-1 text-slate-300 hover:text-white hover:bg-slate-800 text-xs"
+                class="px-2.5 py-1 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
               >
                 -
               </button>
-              <span class="px-3 py-1 text-xs font-bold font-mono text-white">{{ item.quantity }}</span>
+              <span class="px-3 py-1 text-xs font-bold font-mono text-slate-900 dark:text-white">{{ item.quantity }}</span>
               <button
                 @click="cartStore.updateQuantity(item.product.id, item.quantity + 1)"
-                class="px-2.5 py-1 text-slate-300 hover:text-white hover:bg-slate-800 text-xs"
+                class="px-2.5 py-1 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
               >
                 +
               </button>
@@ -56,7 +56,7 @@
 
             <!-- Line Total -->
             <div class="text-right min-w-[80px]">
-              <span class="text-base font-bold font-display text-white">
+              <span class="text-base font-bold font-display text-slate-900 dark:text-white">
                 ${{ (item.product.price * item.quantity).toFixed(2) }}
               </span>
             </div>
@@ -64,7 +64,7 @@
             <!-- Remove Button -->
             <button
               @click="cartStore.removeItem(item.product.id)"
-              class="p-2 text-slate-500 hover:text-red-400 transition-colors"
+              class="p-2 text-slate-400 hover:text-red-500 transition-colors"
               title="Eliminar"
             >
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -75,10 +75,10 @@
         </div>
 
         <div class="flex justify-between items-center pt-2">
-          <button @click="cartStore.clearCart" class="text-xs text-slate-400 hover:text-red-400 font-medium">
+          <button @click="cartStore.clearCart" class="text-xs text-slate-500 hover:text-red-500 font-medium">
             Vaciar Carrito
           </button>
-          <NuxtLink to="/products" class="text-xs text-brand-400 hover:text-brand-300 font-medium">
+          <NuxtLink to="/products" class="text-xs text-brand-600 dark:text-brand-400 hover:underline font-medium">
             ← Continuar Comprando
           </NuxtLink>
         </div>
@@ -86,10 +86,10 @@
 
       <!-- Order Summary Card -->
       <aside>
-        <div class="glass-panel p-6 rounded-2xl space-y-4 border border-slate-800">
-          <h3 class="text-lg font-bold font-display text-white border-b border-slate-800 pb-3">Resumen de Compra</h3>
+        <div class="glass-panel p-6 rounded-2xl space-y-4 border border-slate-200 dark:border-slate-800">
+          <h3 class="text-lg font-bold font-display text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-3">Resumen de Compra</h3>
 
-          <div class="space-y-2.5 text-xs text-slate-300 font-mono">
+          <div class="space-y-2.5 text-xs text-slate-700 dark:text-slate-300 font-mono">
             <div class="flex justify-between">
               <span>Subtotal:</span>
               <span>${{ cartStore.subtotal.toFixed(2) }}</span>
@@ -100,17 +100,17 @@
             </div>
             <div class="flex justify-between">
               <span>Envío Express:</span>
-              <span v-if="cartStore.shipping === 0" class="text-emerald-400 font-bold">GRATIS</span>
+              <span v-if="cartStore.shipping === 0" class="text-emerald-600 dark:text-emerald-400 font-bold">GRATIS</span>
               <span v-else>${{ cartStore.shipping.toFixed(2) }}</span>
             </div>
           </div>
 
-          <div class="border-t border-slate-800 pt-4 flex justify-between items-baseline">
-            <span class="font-bold text-white text-base">Total Final:</span>
-            <span class="text-2xl font-bold font-display text-brand-400">${{ cartStore.grandTotal.toFixed(2) }}</span>
+          <div class="border-t border-slate-200 dark:border-slate-800 pt-4 flex justify-between items-baseline">
+            <span class="font-bold text-slate-900 dark:text-white text-base">Total Final:</span>
+            <span class="text-2xl font-bold font-display text-brand-600 dark:text-brand-400">${{ cartStore.grandTotal.toFixed(2) }}</span>
           </div>
 
-          <p v-if="cartStore.subtotal < 100" class="text-[11px] text-amber-300/80 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/30">
+          <p v-if="cartStore.subtotal < 100" class="text-[11px] text-amber-800 dark:text-amber-300/90 bg-amber-100 dark:bg-amber-500/10 p-2.5 rounded-xl border border-amber-300 dark:border-amber-500/30">
             💡 Agrega <strong>${{ (100 - cartStore.subtotal).toFixed(2) }}</strong> más para obtener <strong>Envío Gratis</strong>.
           </p>
 
