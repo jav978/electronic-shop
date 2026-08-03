@@ -68,9 +68,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAuthStore } from '~/stores/auth';
+import { useToast } from '~/composables/useToast';
 import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
+const toast = useToast();
 const router = useRouter();
 
 const name = ref('');
@@ -91,9 +93,12 @@ const handleRegister = async () => {
     });
 
     authStore.setAuth(res.user, res.token);
+    toast.success('¡Registro Exitoso!', `Bienvenido a ElectroTech Studio, ${res.user.name}.`);
     router.push('/profile');
   } catch (err: any) {
-    error.value = err.data?.error || 'Error al crear la cuenta.';
+    const errMsg = err.data?.error || 'Error al crear la cuenta.';
+    error.value = errMsg;
+    toast.error('Error de Registro', errMsg);
   } finally {
     loading.value = false;
   }

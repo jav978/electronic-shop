@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-screen flex bg-slate-50 dark:bg-dark-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <ToastContainer />
     <!-- Sidebar -->
     <aside class="w-64 bg-slate-100 dark:bg-dark-950 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between hidden md:flex transition-colors duration-300">
       <div>
@@ -113,6 +114,8 @@
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth';
 import { useThemeStore } from '~/stores/theme';
+import ToastContainer from '~/components/ToastContainer.vue';
+import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
 const themeStore = useThemeStore();
@@ -121,9 +124,6 @@ const router = useRouter();
 onMounted(() => {
   authStore.initAuth();
   themeStore.initTheme();
-  if (!authStore.isAdmin) {
-    router.push('/login');
-  }
 });
 
 const handleToggleTheme = () => {

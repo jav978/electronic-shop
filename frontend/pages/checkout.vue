@@ -161,10 +161,16 @@
 import { ref, onMounted } from 'vue';
 import { useAuthStore } from '~/stores/auth';
 import { useCartStore } from '~/stores/cart';
+import { useToast } from '~/composables/useToast';
 import { useRouter } from 'vue-router';
+
+definePageMeta({
+  middleware: ['auth']
+});
 
 const authStore = useAuthStore();
 const cartStore = useCartStore();
+const toast = useToast();
 const router = useRouter();
 
 const fullName = ref('');
@@ -214,9 +220,12 @@ const handlePlaceOrder = async () => {
     });
 
     cartStore.clearCart();
+    toast.success('¡Orden Completada!', `Tu pedido #${res.orderNumber || ''} ha sido procesado exitosamente.`);
     router.push('/profile?orderSuccess=true');
   } catch (err: any) {
-    error.value = err.data?.error || 'Error al procesar el pedido. Por favor intenta nuevamente.';
+    const errMsg = err.data?.error || 'Error al procesar el pedido. Por favor intenta nuevamente.';
+    error.value = errMsg;
+    toast.error('Error en la Compra', errMsg);
   } finally {
     loading.value = false;
   }

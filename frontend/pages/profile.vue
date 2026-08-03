@@ -144,9 +144,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useAuthStore } from '~/stores/auth';
+import { useToast } from '~/composables/useToast';
 import { useRouter, useRoute } from 'vue-router';
 
+definePageMeta({
+  middleware: ['auth']
+});
+
 const authStore = useAuthStore();
+const toast = useToast();
 const router = useRouter();
 const route = useRoute();
 
@@ -157,10 +163,6 @@ const orderSuccess = ref(route.query.orderSuccess === 'true');
 
 onMounted(async () => {
   authStore.initAuth();
-  if (!authStore.isLoggedIn) {
-    router.push('/login');
-    return;
-  }
 
   const config = useRuntimeConfig();
   try {
@@ -170,6 +172,7 @@ onMounted(async () => {
     orders.value = data;
   } catch (err) {
     console.error('Error loading orders:', err);
+    toast.error('Error', 'No se pudieron cargar tus pedidos.');
   } finally {
     loading.value = false;
   }
@@ -187,6 +190,7 @@ const getStatusBadgeClass = (status: string) => {
 
 const logout = () => {
   authStore.logout();
+  toast.info('Sesión Finalizada', 'Has cerrado sesión correctamente.');
   router.push('/');
 };
 </script>

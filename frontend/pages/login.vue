@@ -70,9 +70,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAuthStore } from '~/stores/auth';
+import { useToast } from '~/composables/useToast';
 import { useRouter, useRoute } from 'vue-router';
 
 const authStore = useAuthStore();
+const toast = useToast();
 const router = useRouter();
 const route = useRoute();
 
@@ -98,11 +100,14 @@ const handleLogin = async () => {
     });
 
     authStore.setAuth(res.user, res.token);
+    toast.success('¡Bienvenido!', `Hola ${res.user.name}, has iniciado sesión correctamente.`);
 
     const redirectPath = (route.query.redirect as string) || (res.user.role === 'ADMIN' ? '/admin' : '/profile');
     router.push(redirectPath);
   } catch (err: any) {
-    error.value = err.data?.error || 'Credenciales inválidas.';
+    const errMsg = err.data?.error || 'Credenciales inválidas.';
+    error.value = errMsg;
+    toast.error('Error de Inicio de Sesión', errMsg);
   } finally {
     loading.value = false;
   }

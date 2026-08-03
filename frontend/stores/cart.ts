@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { useToast } from '~/composables/useToast';
 
 export interface CartItem {
   product: {
@@ -49,6 +50,7 @@ export const useCartStore = defineStore('cart', {
       }
     },
     addItem(product: any, quantity = 1) {
+      const toast = useToast();
       const existing = this.items.find(i => i.product.id === product.id);
       if (existing) {
         const newQty = existing.quantity + quantity;
@@ -75,6 +77,9 @@ export const useCartStore = defineStore('cart', {
         }
       }
       this.saveCart();
+      if (import.meta.client) {
+        toast.success('¡Añadido al Carrito!', `"${product.name}" ha sido agregado a tu cesta.`);
+      }
     },
     updateQuantity(productId: string, quantity: number) {
       const item = this.items.find(i => i.product.id === productId);
@@ -88,8 +93,13 @@ export const useCartStore = defineStore('cart', {
       }
     },
     removeItem(productId: string) {
+      const toast = useToast();
+      const target = this.items.find(i => i.product.id === productId);
       this.items = this.items.filter(i => i.product.id !== productId);
       this.saveCart();
+      if (import.meta.client && target) {
+        toast.info('Producto Removido', `"${target.product.name}" eliminado del carrito.`);
+      }
     },
     clearCart() {
       this.items = [];

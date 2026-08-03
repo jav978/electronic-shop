@@ -114,7 +114,8 @@ import { useAuthStore } from '~/stores/auth';
 import SalesChart from '~/components/SalesChart.vue';
 
 definePageMeta({
-  layout: 'admin'
+  layout: 'admin',
+  middleware: ['auth', 'admin']
 });
 
 const authStore = useAuthStore();
