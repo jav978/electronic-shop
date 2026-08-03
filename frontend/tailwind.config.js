@@ -31,9 +31,10 @@ export default {
           950: '#083344'
         },
         dark: {
-          900: '#0b0f19', // Main background
-          800: '#111827', // Card background
-          700: '#1f2937', // Border / Sub-card
+          950: '#05070c', // Deepest background
+          900: '#0b0f19', // Main dark background
+          800: '#111827', // Card dark background
+          700: '#1f2937', // Sub-card / border
           600: '#374151'
         }
       }
