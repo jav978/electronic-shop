@@ -27,6 +27,7 @@ async function seed() {
   });
 
   const customersData = [
+    { email: 'cliente@electrotech.com', name: 'Cliente Demo', role: 'USER' },
     { email: 'carlos.ruiz@gmail.com', name: 'Carlos Ruiz', role: 'USER' },
     { email: 'maria.gonzalez@hotmail.com', name: 'María González', role: 'USER' },
     { email: 'juan.perez@yahoo.com', name: 'Juan Pérez', role: 'USER' },
