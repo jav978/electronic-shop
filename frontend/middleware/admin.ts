@@ -6,7 +6,11 @@ export default defineNuxtRouteMiddleware((to) => {
   const authStore = useAuthStore();
   const toast = useToast();
 
-  if (!authStore.isAuthenticated) {
+  if (import.meta.client) {
+    authStore.initAuth();
+  }
+
+  if (!authStore.isLoggedIn) {
     if (import.meta.client) {
       toast.warning('Acceso Restringido', 'Debes iniciar sesión con una cuenta de Administrador.');
     }
