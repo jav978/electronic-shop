@@ -1,14 +1,14 @@
 <template>
-  <div class="fixed top-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none">
+  <div class="fixed top-20 right-6 z-[9999] flex flex-col gap-3 max-w-sm w-full pointer-events-none">
     <TransitionGroup name="toast-fade">
       <div
         v-for="t in toasts"
         :key="t.id"
-        class="pointer-events-auto p-4 rounded-2xl shadow-xl backdrop-blur-xl border transition-all duration-300 flex items-start gap-3 glass-panel"
+        class="pointer-events-auto p-4 rounded-2xl shadow-2xl backdrop-blur-2xl border transition-all duration-300 flex items-start gap-3.5"
         :class="toastClasses(t.type)"
       >
         <!-- Icon -->
-        <div class="text-xl shrink-0 mt-0.5">
+        <div class="text-xl shrink-0 mt-0.5 select-none">
           <span v-if="t.type === 'success'">✅</span>
           <span v-else-if="t.type === 'error'">❌</span>
           <span v-else-if="t.type === 'warning'">⚠️</span>
@@ -17,14 +17,15 @@
 
         <!-- Content -->
         <div class="flex-1 min-w-0">
-          <h4 class="font-bold text-xs uppercase tracking-wider text-heading">{{ t.title }}</h4>
-          <p v-if="t.message" class="text-xs text-muted mt-0.5 leading-relaxed break-words">{{ t.message }}</p>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">{{ t.title }}</h4>
+          <p v-if="t.message" class="text-xs text-slate-700 dark:text-slate-200 mt-1 leading-relaxed break-words font-medium">{{ t.message }}</p>
         </div>
 
         <!-- Close Button -->
         <button
           @click="remove(t.id)"
-          class="text-muted hover:text-heading text-xs font-bold p-1 rounded-lg transition-colors"
+          class="text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-bold p-1 rounded-lg transition-colors select-none"
+          title="Cerrar"
         >
           ✕
         </button>
@@ -41,14 +42,14 @@ const { toasts, remove } = useToast();
 const toastClasses = (type: string) => {
   switch (type) {
     case 'success':
-      return 'border-emerald-500/30 bg-emerald-950/40 text-emerald-300 html-light:bg-emerald-50 html-light:border-emerald-200 html-light:text-emerald-800';
+      return 'bg-emerald-50 dark:bg-emerald-950/90 border-emerald-300 dark:border-emerald-500/50 text-emerald-900 dark:text-emerald-200 shadow-emerald-500/10';
     case 'error':
-      return 'border-rose-500/30 bg-rose-950/40 text-rose-300 html-light:bg-rose-50 html-light:border-rose-200 html-light:text-rose-800';
+      return 'bg-rose-50 dark:bg-rose-950/90 border-rose-300 dark:border-rose-500/50 text-rose-900 dark:text-rose-200 shadow-rose-500/10';
     case 'warning':
-      return 'border-amber-500/30 bg-amber-950/40 text-amber-300 html-light:bg-amber-50 html-light:border-amber-200 html-light:text-amber-800';
+      return 'bg-amber-50 dark:bg-amber-950/90 border-amber-300 dark:border-amber-500/50 text-amber-900 dark:text-amber-200 shadow-amber-500/10';
     case 'info':
     default:
-      return 'border-cyan-500/30 bg-cyan-950/40 text-cyan-300 html-light:bg-cyan-50 html-light:border-cyan-200 html-light:text-cyan-800';
+      return 'bg-cyan-50 dark:bg-cyan-950/90 border-cyan-300 dark:border-cyan-500/50 text-cyan-900 dark:text-cyan-200 shadow-cyan-500/10';
   }
 };
 </script>
@@ -56,11 +57,11 @@ const toastClasses = (type: string) => {
 <style scoped>
 .toast-fade-enter-active,
 .toast-fade-leave-active {
-  transition: all 0.35s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .toast-fade-enter-from {
   opacity: 0;
-  transform: translateX(30px) scale(0.95);
+  transform: translateX(40px) scale(0.95);
 }
 .toast-fade-leave-to {
   opacity: 0;
