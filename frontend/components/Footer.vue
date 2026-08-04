@@ -29,20 +29,25 @@
         </ul>
       </div>
 
-      <!-- Developer & Contact Info -->
+      <!-- Developer & Social Links -->
       <div>
-        <h4 class="text-slate-900 dark:text-white font-bold text-sm mb-3">Contacto & Desarrollo</h4>
-        <ul class="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
+        <h4 class="text-slate-900 dark:text-white font-bold text-sm mb-3">Redes & Contacto</h4>
+        <ul class="space-y-2.5 text-xs font-medium text-slate-600 dark:text-slate-400">
           <li class="flex items-center gap-2">
             <span class="text-brand-500">📧</span>
             <a href="mailto:jvasquez978@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-mono">jvasquez978@gmail.com</a>
           </li>
           <li class="flex items-center gap-2">
-            <span class="text-brand-500">💻</span>
-            <a href="https://github.com/jav978" target="_blank" rel="noopener" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-mono">github.com/jav978</a>
+            <span class="text-blue-600 dark:text-blue-400">🌐</span>
+            <a href="https://www.facebook.com/jav978" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-mono">Facebook: @jav978</a>
           </li>
           <li class="flex items-center gap-2">
-            <span class="text-emerald-600 dark:text-emerald-400 font-bold">✓</span> Garantía de fábrica en chips y placas
+            <span class="text-pink-600 dark:text-pink-400">📸</span>
+            <a href="https://www.instagram.com/jav_978/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-600 dark:hover:text-pink-400 transition-colors font-mono">Instagram: @jav_978</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-slate-900 dark:text-white">💻</span>
+            <a href="https://github.com/jav978" target="_blank" rel="noopener noreferrer" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-mono">GitHub: github.com/jav978</a>
           </li>
         </ul>
       </div>
