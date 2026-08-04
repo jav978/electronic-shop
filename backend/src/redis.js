@@ -1,16 +1,21 @@
 import Redis from 'ioredis';
 
+const REDIS_URL = process.env.REDIS_URL;
 const REDIS_HOST = process.env.REDIS_HOST || '127.0.0.1';
 const REDIS_PORT = process.env.REDIS_PORT || 6379;
 
-const redis = new Redis({
-  host: REDIS_HOST,
-  port: Number(REDIS_PORT),
-  retryStrategy(times) {
-    const delay = Math.min(times * 50, 2000);
-    return delay;
-  }
-});
+const redis = REDIS_URL
+  ? new Redis(REDIS_URL, {
+      maxRetriesPerRequest: null,
+      tls: REDIS_URL.startsWith('rediss://') ? { rejectUnauthorized: false } : undefined
+    })
+  : new Redis({
+      host: REDIS_HOST,
+      port: Number(REDIS_PORT),
+      retryStrategy(times) {
+        return Math.min(times * 50, 2000);
+      }
+    });
 
 redis.on('connect', () => {
   console.log('🔴 Connected to Redis Server successfully.');
