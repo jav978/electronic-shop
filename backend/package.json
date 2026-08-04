@@ -7,10 +7,10 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "build": "npx prisma generate && npx prisma db push && node src/seed.js",
-    "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "npx prisma migrate dev --name init",
-    "db:push": "npx prisma db push",
+    "build": "prisma generate && prisma db push && node src/seed.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "db:push": "prisma db push",
     "db:seed": "node src/seed.js"
   },
   "dependencies": {
