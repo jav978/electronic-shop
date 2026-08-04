@@ -35,7 +35,7 @@
         <ul class="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
           <li class="flex items-center gap-2">
             <span class="text-brand-500">📧</span>
-            <a href="mailto:jav1978@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-mono">jav1978@gmail.com</a>
+            <a href="mailto:jvasquez978@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-mono">jvasquez978@gmail.com</a>
           </li>
           <li class="flex items-center gap-2">
             <span class="text-brand-500">💻</span>
@@ -71,7 +71,7 @@
 
     <!-- Copyright -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-slate-300 dark:border-slate-800/80 text-center text-xs text-slate-500 dark:text-slate-400 font-mono space-y-1">
-      <p>© 2026 ElectroTech Studio. Desarrollado por <strong class="text-slate-800 dark:text-slate-200">José Vásquez</strong> (<a href="mailto:jav1978@gmail.com" class="text-brand-600 dark:text-brand-400 hover:underline">jav1978@gmail.com</a>). Todos los derechos reservados.</p>
+      <p>© 2026 ElectroTech Studio. Desarrollado por <strong class="text-slate-800 dark:text-slate-200">José Vásquez</strong> (<a href="mailto:jvasquez978@gmail.com" class="text-brand-600 dark:text-brand-400 hover:underline">jvasquez978@gmail.com</a>). Todos los derechos reservados.</p>
       <p class="text-[11px] text-slate-400 dark:text-slate-500">Impulsado por Nuxt 3, Pinia, FeathersJS, Prisma & PostgreSQL.</p>
     </div>
   </footer>
