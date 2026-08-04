@@ -5,7 +5,8 @@
 :root, html.dark {
   --bg-main: #0b0f19;
   --bg-card: #111827;
-  --bg-panel: rgba(17, 24, 39, 0.85);
+  --bg-footer: #05070c;
+  --bg-panel: rgba(17, 24, 39, 0.9);
   --bg-sub: #1f2937;
   --text-main: #e2e8f0;
   --text-heading: #ffffff;
@@ -19,13 +20,14 @@
 html.light {
   --bg-main: #f8fafc;
   --bg-card: #ffffff;
-  --bg-panel: rgba(255, 255, 255, 0.92);
+  --bg-footer: #e2e8f0;
+  --bg-panel: rgba(255, 255, 255, 0.95);
   --bg-sub: #f1f5f9;
   --text-main: #1e293b;
   --text-heading: #0f172a;
   --text-muted: #64748b;
   --border-color: rgba(203, 213, 225, 0.8);
-  --input-bg: #f8fafc;
+  --input-bg: #ffffff;
   --input-border: #cbd5e1;
   --input-text: #0f172a;
 }
@@ -39,6 +41,11 @@ html.light {
 
   h1, h2, h3, h4, h5, h6 {
     color: var(--text-heading);
+  }
+
+  footer {
+    background-color: var(--bg-footer) !important;
+    border-color: var(--border-color);
   }
 }
 
